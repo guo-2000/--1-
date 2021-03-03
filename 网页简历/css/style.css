@@ -1,0 +1,487 @@
+* {
+    box-sizing: border-box; /* 盒子大小规则 */
+    font-family: 'Poppins',sans-serif; 
+  }
+ 
+  body {
+    background: #000; 
+    min-height: 200vh; /* 最小高度 */
+  }
+  
+  header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽 */
+    display: flex; /* 弹性盒模型 */
+    justify-content: space-between; /* 主轴对齐方式 */
+    align-items: center; /* 交叉轴对齐方式 */
+    transition: 0.6s; /* 过渡时间 */
+    padding: 35px 100px;
+    z-index: 1000; /* 层叠顺序 */
+  }
+  header .logo {
+    position: relative;
+    font-weight: 700;
+    color: #fff;
+    font-size: 2em; 
+    text-transform: uppercase; /* 字体大写 */
+    letter-spacing: 2px; /* 字符间距 */
+    transition: 0.6s;
+  }
+  header ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  header ul li {
+    position: relative;
+    list-style: none;
+  }
+  
+  header ul li a {
+    position: relative;
+    margin: 0 13px;  /*不用显示为block也能生效*/
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.6s;
+    padding:5px 5px;
+  }
+  
+  header.sticky .logo,
+  header.sticky ul li a {
+    color: #000;
+  }
+  
+  header.sticky {
+    padding: 5px 100px;
+    background: #fff;
+  }
+
+
+  /*顶部连接点击动效*/
+  header ul li a:before{
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    border-top:1px solid rgba(255, 255, 255, 0.5);
+    border-bottom:1px solid rgba(255, 255, 255, 0.5);
+    transform:scaleY(2);
+    opacity:0;   /*先设置透明度为0，再设置transition属性，就会有渐现效果*/
+    transition: 0.4s;
+    z-index:-1;
+}
+header ul li a:hover:before{
+    transform:scaleY(1);
+    opacity: 1;
+}
+
+header ul li a:after{
+    content:'';
+    position:absolute;
+    top:1px;  /*此时发现中间的黑框触发后会挡住上面的边框，调整位置即可*/
+    left:0;
+    width:100%;
+    height:100%;
+    background:#fff;
+    transform:scale(0);
+    transition:0.4s;
+    z-index:-1;
+    opacity:0.4;
+}
+header ul li a:hover:after{
+    transform: scale(1);
+}
+
+/*第一页*/
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url(../asset/timg.jpg);
+  background-size: cover; /* 背景大小：裁切 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner .message{
+  color:#fff;
+  text-align: center;
+  line-height: 2em;
+  letter-spacing: 2px;
+}
+
+.banner img{
+  display:block;
+   width:150px;
+   height:150px;
+   border-radius: 50%;
+   margin-left:130px;
+}
+
+.banner .message ul .me{
+  font-size:2em;
+  line-height: 3em;
+}
+
+/*第二页*/
+.project {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url(../asset/back1.jpg);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project .tit{
+  position: absolute;
+  color: #fff;
+  font-size:34px;
+  font-family: '等线';
+  font-weight: 600;
+  top:140px;
+  left:200px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgb(102, 102, 102);
+}
+
+.project .container{
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: 0.5s;
+
+}
+.project .card{
+  position: relative;
+  width: 250px;
+  height:300px;
+  background:rgba(255, 255, 255, 0.6);
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.2); 
+  /* border-right:1px solid rgba(0,0,0,0.2); */
+}
+
+.project .card .content{
+  color:#000;
+  text-align: center;
+  padding: 0 20px;
+  transition: 0.5s;
+}
+.project .container .card:hover .content{
+  color:#fff;
+}
+.project .container .card .content h2{
+  font-size:2.8em;
+}
+.project .container .card .content p{
+  font-size:0.9em;
+  line-height: 1.5em;
+}
+.project .container .card .content a{
+  display: inline-block;
+  margin-top: 15px;
+  padding:5px 10px;
+  color:#000;
+  border:1px solid #000;
+  border-radius: 5px;
+  z-index:30;
+}
+
+.project .container .card:hover{
+  background:rgba(0,0,0,0.3);
+  height:380px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.7);
+} 
+.project .container .card:hover a{
+  color:#fff;
+  border:1px solid #fff;
+}
+
+.project .container .card .content a:hover{
+  opacity:0.7;
+}
+
+.container:hover .card{
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  transform:scale(0.7);
+}
+
+.container .card:hover{
+  filter:blur(0px);
+  transform: scale(1);
+}
+
+
+
+/*第三页*/
+.contact {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  background-image:url(../asset/back2.jpg);
+  background-size: 100vw 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact .label{
+  color:#fff;
+  line-height:2em;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Verdana'; 
+  font-weight: 300;
+  width:450px;
+  background: rgba(138, 138, 138, 0.35);
+  letter-spacing: 1px;
+}
+
+.contact .label h2{
+  font-size: 43px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 3em;
+}
+
+.contact .icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 25px;
+  background: rgba(138, 138, 138, 0.35);
+}
+
+.contact .icons a{
+   margin:0 25px;
+   color:#fff;
+   display:block;
+   position: relative;
+ }
+
+ .contact .icons a .layer{
+    width:50px;
+    height: 50px;
+    transition: 0.3s; /* 因为啊的hover中只设置了transform转换，所以默认就是给transform设定的迟缓效果*/
+ }
+
+ .contact .icons a .layer span{
+  height:100%;
+  width: 100%;
+  border:1px solid rgb(190, 190, 190);
+  border-radius: 7px;
+  position: absolute; /*要加上这句，后面fab中的图标才会显示*/
+  top:0;
+  left:0;
+  transition: 0.3s;
+}
+
+ .contact .icons a:nth-child(1) .layer .fab{
+  background: url(../asset/youxiang.png);
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+ .contact .icons a:nth-child(2) .layer .fab{
+  background: url(../asset/dianhua.png);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.contact .icons a:nth-child(3) .layer .fab{
+  background: url(../asset/weixin.png);
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.contact .icons a:nth-child(4) .layer .fab{
+  background: url(../asset/github.png);
+  background-size: 29px 29px;
+  background-repeat: no-repeat;
+  background-position: center;
+} 
+
+ .contact .icons a .text{
+  font-family: 'Verdana';
+  text-align: center;
+  line-height: 1.6em;
+   position: absolute;   /*使其脱离文档流，自然就跑到了span的边框之外了*/
+   top:70%;
+   margin-left: -49px;
+   opacity: 0;
+   transition: 0.3s;
+  }
+
+  .contact .icons a:nth-child(2) .text{
+    margin-left: -20px;
+  }
+  .contact .icons a:nth-child(3) .text{
+    margin-left: -20px;
+  }
+  .contact .icons a:nth-child(4) .text{
+    margin-left: -60px;
+  }
+
+  .contact .icons a:hover .text{
+    top:110%;
+    opacity:1;
+ }
+
+  .contact .icons a:hover .layer{
+    transform: rotate(-35deg) skew(20deg);
+  }
+
+  .contact .icons a:hover .layer span:nth-child(1){
+    opacity: 0.2;
+  }
+  .contact .icons a:hover .layer span:nth-child(2){
+    opacity: 0.4;
+    transform:translate(5px,-5px);
+  }
+  .contact .icons a:hover .layer span:nth-child(3){
+    opacity: 0.6;
+    transform:translate(10px,-10px);
+  }
+  .contact .icons a:hover .layer span:nth-child(4){
+    opacity: 0.8;
+    transform:translate(15px,-15px);
+  }
+  .contact .icons a:hover .layer span:nth-child(5){
+    opacity: 1;
+    transform:translate(20px,-20px);
+  }
+
+  .contact .icons a:nth-child(1) .layer span,
+  .icons a:nth-child(1) .text{
+    color:#8c69ec;
+    border-color:#8c69ec;
+  }
+  .contact .icons a:nth-child(2) .layer span,
+  .icons a:nth-child(2) .text{
+    color:#2da3c7;
+    border-color:#2da3c7;
+  }
+
+  .contact .icons a:nth-child(3) .layer span,
+  .icons a:nth-child(3) .text{
+    color:#a75d6d;
+    border-color:#a75d6d;
+  }
+
+  .contact .icons a:nth-child(4) .layer span,
+  .icons a:nth-child(4) .text{
+    color:#3474f5;
+    border-color:#3474f5;
+  }
+
+  .contact .icons a:hover:nth-child(1) .layer span{
+    box-shadow: -1px 1px 3px #8c69ec; /*让边框看起来有一种模糊的效果*/
+  }
+
+  .contact .icons a:hover:nth-child(2) .layer span{
+    box-shadow: -1px 1px 3px #2da3c7; 
+  }
+
+  .contact .icons a:hover:nth-child(3) .layer span{
+    box-shadow: -1px 1px 3px #a75d6d; 
+  }
+
+  .contact .icons a:hover:nth-child(4) .layer span{
+    box-shadow: -1px 1px 3px #376fdd; 
+  }
+ 
+  /*经历*/
+  .exp{
+    height: 100vh;
+    width: 100%;
+    background: rgb(85, 57, 57);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .exp .tit{
+    position: absolute;
+    left:100px;
+    text-shadow: 2px 2px 3px rgb(56, 56, 56);
+  }
+  .exp .text{
+    letter-spacing: 1px;
+  }
+
+  .exp .text h3{
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+
+  .exp .text .part1{
+    position: absolute;
+    top:27%;
+    left:52%;
+    line-height: 1.5em;
+  }
+  .exp .text .part2{
+    position: absolute;
+    top:42%;
+    right:52%;
+    line-height: 1.5em;
+    text-align: right;
+  }
+  .exp .text .part3{
+    position: absolute;
+    top:56%;
+    left:52%;
+    line-height: 1.5em;
+  }
+  .exp .text .part4{
+    position: absolute;
+    top:70%;
+    right:52%;
+    line-height: 1.5em;
+    text-align: right;
+  }
+
+  .exp .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .exp .container .circle{
+    width: 28px;
+    height: 28px;
+    border:3px solid #c56161;
+    border-radius: 50%;
+  }
+
+  .exp .container .line{
+    height:80px;
+    border:0.7px solid #a75d6d;
+  }
